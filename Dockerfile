@@ -10,3 +10,6 @@ RUN strip ./target/release/gtfs-geojson
 FROM ubuntu:focal
 COPY --from=builder /gtfs-to-geojson/target/release/gtfs-geojson /usr/local/bin/gtfs-geojson
 RUN apt-get -y update && apt-get -y install libssl-dev
+RUN apt-get -y install default-jre
+RUN apt-get -y install curl
+RUN curl --location -O https://github.com/MobilityData/gtfs-validator/releases/download/v2.0.0/gtfs-validator-v2.0.0_cli.jar 
