@@ -8,6 +8,14 @@ WORKDIR /gtfs-to-geojson
 RUN cargo build --release
 RUN strip ./target/release/gtfs-geojson
 
+# https://github.com/etalab/transport-validator.git (rust app)
+FROM rust:latest as builder
+WORKDIR /
+RUN git clone --depth=1 --branch=master --single-branch https://github.com/etalab/transport-validator.git
+WORKDIR /transport-validator
+RUN cargo build --release
+RUN strip ./target/release/main
+
 FROM ubuntu:focal
 COPY --from=builder /gtfs-to-geojson/target/release/gtfs-geojson /usr/local/bin/gtfs-geojson
 RUN apt-get -y update && apt-get -y install libssl-dev
