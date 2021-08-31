@@ -1,5 +1,6 @@
 FROM ubuntu:focal
 
+# https://github.com/rust-transit/gtfs-to-geojson.git (rust app)
 FROM rust:latest as builder
 WORKDIR /
 RUN git clone --depth=1 --branch main --single-branch https://github.com/rust-transit/gtfs-to-geojson.git
