@@ -18,6 +18,7 @@ RUN strip ./target/release/main
 
 FROM ubuntu:focal
 COPY --from=builder /gtfs-to-geojson/target/release/gtfs-geojson /usr/local/bin/gtfs-geojson
+COPY --from=builder /transport-validator/target/release/main /usr/local/bin/transport-validator
 RUN apt-get -y update && apt-get -y install libssl-dev
 RUN apt-get -y install default-jre
 RUN apt-get -y install curl
