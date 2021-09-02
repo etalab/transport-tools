@@ -1,3 +1,15 @@
+### What is this?
+
+This repository contains a Docker setup to consolidate various converters and validators that we use or will use soon on [transport.data.gouv.fr](https://transport.data.gouv.fr):
+* https://github.com/rust-transit/gtfs-to-geojson.git
+* https://github.com/etalab/transport-validator.git
+* https://github.com/MobilityData/gtfs-validator
+* https://github.com/CUTR-at-USF/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing
+
+This is an internal build, but we are still publishing it as open-source in case it helps other (without support at this point).
+
+### Manual local use
+
 ```
 docker build . -t localtest
 
