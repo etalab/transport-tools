@@ -1,0 +1,18 @@
+# Inspiration:
+# - https://docs.github.com/en/actions/guides/publishing-docker-images#publishing-images-to-github-packages
+name: Create and publish a Docker image
+on:
+  push:
+    branches: ['master','build-image-as-docker-action']
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
