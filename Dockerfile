@@ -9,7 +9,6 @@ RUN cargo build --release
 RUN strip ./target/release/gtfs-geojson
 
 # https://github.com/etalab/transport-validator.git (rust app)
-FROM rust:latest as builder
 WORKDIR /
 RUN git clone --depth=1 --branch=master --single-branch https://github.com/etalab/transport-validator.git
 WORKDIR /transport-validator
