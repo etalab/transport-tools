@@ -19,6 +19,8 @@ This is an internal build, but we are still publishing it as open-source in case
 docker run -a stdout -a stderr -v $(pwd):/data -t ghcr.io/etalab/transport-tools:master java -jar gtfs-validator-v2.0.0_cli.jar -o /data -f fr-foobar -i /data/"the-gtfs-file.zip"
 ```
 
+You will see some output, and `report.json` and `system_errors.json` being generated with the output of the validation.
+
 Explanation:
 * `-a stdout -a stderr` makes sure you can see the output of the Docker program on your screen
 * `-v $(pwd):/data` (replace with `-v %CD%:/data` on Windows) makes the current folder available inside Docker at `/data`
