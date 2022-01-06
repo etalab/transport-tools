@@ -16,6 +16,9 @@ RUN cargo build --release
 RUN strip ./target/release/main
 
 # https://github.com/CanalTP/transit_model/tree/master/gtfs2netexfr (rust app)
+WORKDIR /
+RUN git clone --depth=1 --branch=master --single-branch https://github.com/CanalTP/transit_model
+WORKDIR /transit_model
 FROM ubuntu:focal
 COPY --from=builder /gtfs-to-geojson/target/release/gtfs-geojson /usr/local/bin/gtfs-geojson
 COPY --from=builder /transport-validator/target/release/main /usr/local/bin/transport-validator
