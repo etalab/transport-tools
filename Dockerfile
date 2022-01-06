@@ -20,6 +20,12 @@ WORKDIR /
 RUN git clone --depth=1 --branch=master --single-branch https://github.com/CanalTP/transit_model
 WORKDIR /transit_model
 RUN cargo build --manifest-path=gtfs2netexfr/Cargo.toml --release
+# TODO: verify if proj must be added manually (most likely) on CI build
+# TODO: verify correct output path
+# TODO: strip the binary
+# TODO: copy to the right place
+# TODO: add basic test
+
 FROM ubuntu:focal
 COPY --from=builder /gtfs-to-geojson/target/release/gtfs-geojson /usr/local/bin/gtfs-geojson
 COPY --from=builder /transport-validator/target/release/main /usr/local/bin/transport-validator
