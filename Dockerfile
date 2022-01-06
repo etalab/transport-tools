@@ -19,6 +19,7 @@ RUN strip ./target/release/main
 WORKDIR /
 RUN git clone --depth=1 --branch=master --single-branch https://github.com/CanalTP/transit_model
 WORKDIR /transit_model
+RUN cargo build --manifest-path=gtfs2netexfr/Cargo.toml --release
 FROM ubuntu:focal
 COPY --from=builder /gtfs-to-geojson/target/release/gtfs-geojson /usr/local/bin/gtfs-geojson
 COPY --from=builder /transport-validator/target/release/main /usr/local/bin/transport-validator
