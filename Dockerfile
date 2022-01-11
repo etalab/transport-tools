@@ -50,5 +50,7 @@ RUN curl --location -O https://github.com/MobilityData/gtfs-validator/releases/d
 # https://github.com/CUTR-at-USF/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing (java app)
 RUN curl --location -O https://s3.amazonaws.com/gtfs-rt-validator/travis_builds/gtfs-realtime-validator-lib/1.0.0-SNAPSHOT/gtfs-realtime-validator-lib-1.0.0-SNAPSHOT.jar
 
+# for gtfs2netexfr
+RUN apt-get -y install libtiff5 libcurl3-nss
 COPY --from=builder_proj /usr/lib/libproj.* /usr/lib
 RUN /usr/local/bin/gtfs2netexfr --help
