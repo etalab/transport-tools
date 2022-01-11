@@ -54,4 +54,10 @@ RUN curl --location -O https://s3.amazonaws.com/gtfs-rt-validator/travis_builds/
 RUN apt-get -y install libtiff5 libcurl3-nss
 # hackish ; TODO: check out https://github.com/CanalTP/ci-images instead
 COPY --from=builder_proj /usr/lib/libproj.* /usr/lib
+
+# run each binary (as part of CI) to make sure they do not lack a dynamic dependency
+RUN /usr/local/bin/gtfs-geojson --help
+RUN /usr/local/bin/transport-validator --help
 RUN /usr/local/bin/gtfs2netexfr --help
+
+# TODO: test java binaries (they do not have a `--help` currently I believe)
