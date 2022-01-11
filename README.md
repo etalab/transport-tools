@@ -46,6 +46,10 @@ docker run -a stdout -t localtest /usr/local/bin/transport-validator --help
 # https://github.com/CanalTP/transit_model/tree/master/gtfs2netexfr
 docker run -a stdout -t localtest /usr/local/bin/gtfs2netexfr --help
 
+# actual run
+mkdir data
+docker run -a stdout -a stderr -v $(pwd)/data:/data -t localtest /usr/local/bin/gtfs2netexfr -i /data/irigo_gtfs_zip -o /data --participant test
+
 # https://github.com/MobilityData/gtfs-validator/tree/v2.0.0-docs
 docker run -a stdout -t localtest java -jar gtfs-validator-v2.0.0_cli.jar
 
