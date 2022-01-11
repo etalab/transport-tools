@@ -24,8 +24,10 @@ RUN strip ./target/release/main
 # - relying on https://hub.docker.com/r/kisiodigital/rust-ci, which provides a `proj` flavour (see
 #   https://github.com/CanalTP/ci-images/blob/master/rust/proj/Dockerfile)
 #
-# We could also probably just grab the `proj-ci` artefacts with a bit more time here https://hub.docker.com/r/kisiodigital/proj-ci
-# in the future if needed.
+# We could also probably "just" grab the `proj-ci` artefacts with a bit more time here:
+# - https://hub.docker.com/r/kisiodigital/proj-ci
+# - https://github.com/CanalTP/ci-images
+#
 FROM kisiodigital/rust-ci:latest-proj8.1.0 as builder_proj
 WORKDIR /
 RUN git clone --depth=1 --branch=master --single-branch https://github.com/CanalTP/transit_model
