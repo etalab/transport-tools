@@ -52,5 +52,6 @@ RUN curl --location -O https://s3.amazonaws.com/gtfs-rt-validator/travis_builds/
 
 # for gtfs2netexfr
 RUN apt-get -y install libtiff5 libcurl3-nss
+# hackish ; TODO: check out https://github.com/CanalTP/ci-images instead
 COPY --from=builder_proj /usr/lib/libproj.* /usr/lib
 RUN /usr/local/bin/gtfs2netexfr --help
