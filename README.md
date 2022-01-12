@@ -3,6 +3,7 @@
 This repository contains a Docker setup to consolidate various converters and validators that we use or will use soon on [transport.data.gouv.fr](https://transport.data.gouv.fr):
 * https://github.com/rust-transit/gtfs-to-geojson.git
 * https://github.com/etalab/transport-validator.git
+* https://github.com/CanalTP/transit_model/tree/master/gtfs2netexfr
 * https://github.com/MobilityData/gtfs-validator
 * https://github.com/CUTR-at-USF/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing
 
@@ -41,6 +42,13 @@ docker run -a stdout -t localtest /usr/local/bin/gtfs-geojson --help
 
 # https://github.com/etalab/transport-validator.git
 docker run -a stdout -t localtest /usr/local/bin/transport-validator --help
+
+# https://github.com/CanalTP/transit_model/tree/master/gtfs2netexfr
+docker run -a stdout -t localtest /usr/local/bin/gtfs2netexfr --help
+
+# actual run, using a "data" subfolder shared with the docker machine (requires curl 7.73+)
+curl --create-dirs --output-dir ./data -O https://data.angers.fr/api/datasets/1.0/angers-loire-metropole-horaires-reseau-irigo-gtfs-rt/alternative_exports/irigo_gtfs_zip
+docker run -a stdout -a stderr -v $(pwd)/data:/data -t localtest /usr/local/bin/gtfs2netexfr -i /data/irigo_gtfs_zip -o /data --participant test
 
 # https://github.com/MobilityData/gtfs-validator/tree/v2.0.0-docs
 docker run -a stdout -t localtest java -jar gtfs-validator-v2.0.0_cli.jar
