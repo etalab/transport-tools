@@ -9,6 +9,16 @@ This repository contains a Docker setup to consolidate various converters and va
 
 This is an internal build, but we are still publishing it as open-source in case it helps other (without support at this point).
 
+### Release process
+
+To create a new release as a Docker image, just create a GitHub release: it is important that you create a tag named `v1.0.x` or similar, and that the release has the same name + changelog.
+
+On release creation (see https://github.com/etalab/transport-tools/blob/master/.github/workflows/docker.yml), a build will start, and should normally result into the publication of a GitHub-hosted Docker image named just like the release.
+
+One major caveat: the workflow must exist at the moment the tag is created (https://github.community/t/workflow-set-for-on-release-not-triggering-not-showing-up/16286/7):
+
+> The trigger only executes when a release is created using a tag that contains the workflow.
+
 ### Use from Docker container registry
 
 * Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
