@@ -15,6 +15,8 @@ To create a new release as a Docker image, just create a GitHub release: it is i
 
 On release creation (see https://github.com/etalab/transport-tools/blob/master/.github/workflows/docker.yml), a build will start, and should normally result into the publication of a GitHub-hosted Docker image named just like the release.
 
+You can find the release here: https://github.com/etalab/transport-tools/pkgs/container/transport-tools
+
 One major caveat: the workflow must exist at the moment the tag is created (https://github.community/t/workflow-set-for-on-release-not-triggering-not-showing-up/16286/7):
 
 > The trigger only executes when a release is created using a tag that contains the workflow.
