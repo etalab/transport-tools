@@ -55,6 +55,7 @@ RUN apt-get -y install libtiff5 libcurl3-nss
 # hackish ; TODO: check out https://github.com/CanalTP/ci-images instead
 COPY --from=builder_proj /usr/lib/libproj.* /usr/lib
 # home of proj.db
+RUN mkdir /usr/share/proj/
 COPY --from=builder_proj /usr/share/proj/ /usr/share/proj/
 
 # run each binary (as part of CI) to make sure they do not lack a dynamic dependency
