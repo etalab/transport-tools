@@ -69,4 +69,7 @@ RUN /usr/local/bin/gtfs-geojson --help
 RUN /usr/local/bin/transport-validator --help
 RUN /usr/local/bin/gtfs2netexfr --help
 
+# the --help returns a non-zero exit code ; we grep on a well-known text as a quick test
+RUN java -jar gtfs-validator-v3.0.0_cli.jar --help | grep "Location of the input GTFS ZIP"
+
 # TODO: test java binaries (they do not have a `--help` currently I believe)
