@@ -47,9 +47,10 @@ FROM ubuntu:focal
 COPY --from=builder /gtfs-to-geojson/target/release/gtfs-geojson /usr/local/bin/gtfs-geojson
 COPY --from=builder /transport-validator/target/release/main /usr/local/bin/transport-validator
 COPY --from=builder_proj /transit_model/target/release/gtfs2netexfr /usr/local/bin/gtfs2netexfr
-RUN apt-get -y update && apt-get -y install libssl-dev
-RUN apt-get -y install default-jre
-RUN apt-get -y install curl
+
+RUN apt-get -y update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libssl-dev default-jre curl git
+
 # https://github.com/MobilityData/gtfs-validator (java app)
 # https://github.com/MobilityData/gtfs-validator/releases
 RUN curl --location -O https://github.com/MobilityData/gtfs-validator/releases/download/v3.0.0/gtfs-validator-v3.0.0_cli.jar
