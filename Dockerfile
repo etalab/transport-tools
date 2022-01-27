@@ -12,7 +12,9 @@ RUN strip ./target/release/gtfs-geojson
 
 # https://github.com/etalab/transport-validator.git (rust app)
 WORKDIR /
-RUN git clone --depth=1 --branch=master --single-branch https://github.com/etalab/transport-validator.git
+# this repo has no tagged releases ; we pin the version based on latest verified commit instead
+RUN git clone https://github.com/etalab/transport-validator.git
+RUN git -C transport-validator checkout 302e62e787dc28b80f9e8e80ceadc80be71aafbc
 WORKDIR /transport-validator
 RUN cargo build --release
 RUN strip ./target/release/main
