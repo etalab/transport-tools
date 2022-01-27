@@ -54,6 +54,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libssl-dev default-jre cur
 # https://github.com/MobilityData/gtfs-validator (java app)
 # https://github.com/MobilityData/gtfs-validator/releases
 RUN curl --location -O https://github.com/MobilityData/gtfs-validator/releases/download/v3.0.0/gtfs-validator-v3.0.0_cli.jar
+RUN cp gtfs-validator-v3.0.0_cli.jar /usr/local/bin
+
 # https://github.com/CUTR-at-USF/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing (java app)
 # freeze by commit + self-compile for now (https://github.com/CUTR-at-USF/gtfs-realtime-validator/issues/406)
 RUN git clone https://github.com/CUTR-at-USF/gtfs-realtime-validator.git
@@ -79,6 +81,6 @@ RUN /usr/local/bin/transport-validator --help
 RUN /usr/local/bin/gtfs2netexfr --help
 
 # the --help returns a non-zero exit code ; we grep on a well-known text as a quick test
-RUN java -jar gtfs-validator-v3.0.0_cli.jar --help | grep "Location of the input GTFS ZIP"
-
-# TODO: test java binaries (they do not have a `--help` currently I believe)
+RUN java -jar /usr/local/bin/gtfs-validator-v3.0.0_cli.jar --help | grep "Location of the input GTFS ZIP"
+# there is no --version or --help here currently
+RUN java -jar /usr/local/bin/gtfs-realtime-validator-lib-1.0.0-SNAPSHOT.jar 2>&1 | grep "For batch mode you must provide a path and file name to GTFS data"
