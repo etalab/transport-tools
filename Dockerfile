@@ -85,4 +85,4 @@ RUN java -jar /usr/local/bin/gtfs-validator-v3.0.0_cli.jar --help | grep "Locati
 # there is no --version or --help here currently
 RUN java -jar /usr/local/bin/gtfs-realtime-validator-lib-1.0.0-SNAPSHOT.jar 2>&1 | grep "For batch mode you must provide a path and file name to GTFS data"
 # freeze the JDK too (installed via default-jre, so no explicit version)
-RUN java -version | grep "OpenJDK Runtime Environment (build 11."
+RUN java -version 2>&1 | grep "OpenJDK Runtime Environment (build 11."
