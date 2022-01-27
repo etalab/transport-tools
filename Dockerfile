@@ -51,7 +51,8 @@ RUN apt-get -y update && apt-get -y install libssl-dev
 RUN apt-get -y install default-jre
 RUN apt-get -y install curl
 # https://github.com/MobilityData/gtfs-validator (java app)
-RUN curl --location -O https://github.com/MobilityData/gtfs-validator/releases/download/v2.0.0/gtfs-validator-v2.0.0_cli.jar 
+# https://github.com/MobilityData/gtfs-validator/releases
+RUN curl --location -O https://github.com/MobilityData/gtfs-validator/releases/download/v3.0.0/gtfs-validator-v3.0.0_cli.jar
 # https://github.com/CUTR-at-USF/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing (java app)
 RUN curl --location -O https://s3.amazonaws.com/gtfs-rt-validator/travis_builds/gtfs-realtime-validator-lib/1.0.0-SNAPSHOT/gtfs-realtime-validator-lib-1.0.0-SNAPSHOT.jar
 
