@@ -25,7 +25,23 @@ One major caveat: the workflow must exist at the moment the tag is created (http
 
 * Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
 * Verify the available "tags" at https://github.com/etalab/transport-tools/pkgs/container/transport-tools (e.g. `master` currently, for unstable build)
+
+#### GTFS validation using transport.data.gouv.fr validator
+
+TODO: compléter
+
 * Download the GTFS file on disk in current folder (manually or with a `curl` command)
+
+```
+docker run -a stdout -a stderr -t ghcr.io/etalab/transport-tools:master /usr/local/bin/transport-validator --input "https://www.itinisere.fr/fr/donnees-open-data/169/OpenData/Download?fileName=CG38.GTFS.zip" --output-format Yaml
+
+docker run -a stdout -a stderr -v $(pwd):/data -t ghcr.io/etalab/transport-tools:master /usr/local/bin/transport-validator --input /data/CG38.GTFS.zip --output-format Yaml
+```
+
+Format `PrettyJson`, `Json`
+
+
+
 * Run the validator with:
 
 ```
