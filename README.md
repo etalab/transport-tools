@@ -28,19 +28,28 @@ One major caveat: the workflow must exist at the moment the tag is created (http
 
 #### GTFS validation using transport.data.gouv.fr validator
 
-TODO: compléter
+Option 1: via a local file stored on disk
 
-* Download the GTFS file on disk in current folder (manually or with a `curl` command)
+* Download the GTFS file on disk in current folder (manually or with a `curl` command), e.g. "some-file.zip"
+* Run the following command (keep `/data/` in front of your filename):
 
 ```
-docker run -a stdout -a stderr -t ghcr.io/etalab/transport-tools:master /usr/local/bin/transport-validator --input "https://www.itinisere.fr/fr/donnees-open-data/169/OpenData/Download?fileName=CG38.GTFS.zip" --output-format Yaml
-
-docker run -a stdout -a stderr -v $(pwd):/data -t ghcr.io/etalab/transport-tools:master /usr/local/bin/transport-validator --input /data/CG38.GTFS.zip --output-format Yaml
+docker run -a stdout -a stderr -v $(pwd):/data -t ghcr.io/etalab/transport-tools:master /usr/local/bin/transport-validator --input /data/some-file.zip --output-format Yaml
 ```
 
-Format `PrettyJson`, `Json`
+If you are on Windows, replace `$(pwd)` by `%cd%`.
 
+You can change the output format to `Json` or `PrettyJson` if preferred.
 
+Option 2: via an URL
+
+* Run the following command:
+
+```
+docker run -a stdout -a stderr -t ghcr.io/etalab/transport-tools:master /usr/local/bin/transport-validator --input "https://your-url" --output-format Yaml
+```
+
+#### GTFS validation using MobilityData GTFS validator
 
 * Run the validator with:
 
