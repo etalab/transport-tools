@@ -54,7 +54,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libssl-dev default-jre cur
 # https://github.com/MobilityData/gtfs-validator (java app)
 # https://github.com/MobilityData/gtfs-validator/releases
 RUN curl --location -O https://github.com/MobilityData/gtfs-validator/releases/download/v3.1.1/gtfs-validator-3.1.1-cli.jar
-RUN cp gtfs-validator-v3.1.1_cli.jar /usr/local/bin
+RUN cp gtfs-validator-3.1.1-cli.jar /usr/local/bin
 
 # https://github.com/MobilityData/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing (java app)
 # freeze by commit + self-compile for now (until https://github.com/MobilityData/gtfs-realtime-validator/issues/105 is handled)
