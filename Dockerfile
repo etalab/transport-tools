@@ -35,7 +35,7 @@ RUN strip ./target/release/main
 FROM kisiodigital/rust-ci:latest-proj8.1.0 as builder_proj
 WORKDIR /
 # we pin the version to avoid unexpected changes due to rebuild on our side
-RUN git clone --depth=1 --branch=v0.46.0 --single-branch https://github.com/CanalTP/transit_model
+RUN git clone --depth=1 --branch=v0.51.2 --single-branch https://github.com/CanalTP/transit_model
 WORKDIR /transit_model
 # NOTE: when using the kisio rust-ci as a base image, CARGO_TARGET_DIR is set to something like `/tmp/cargo-release`.
 # To avoid breaking the build in case of variable change upstream, we instead force the build to be local, which
