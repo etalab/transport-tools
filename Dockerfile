@@ -56,10 +56,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libssl-dev default-jre cur
 RUN curl --location -O https://github.com/MobilityData/gtfs-validator/releases/download/v3.1.1/gtfs-validator-3.1.1-cli.jar
 RUN cp gtfs-validator-v3.1.1_cli.jar /usr/local/bin
 
-# https://github.com/CUTR-at-USF/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing (java app)
-# freeze by commit + self-compile for now (https://github.com/CUTR-at-USF/gtfs-realtime-validator/issues/406)
-RUN git clone https://github.com/CUTR-at-USF/gtfs-realtime-validator.git
-RUN git -C gtfs-realtime-validator checkout fca9c73b3d3b377c606065648750b777d36ad553
+# https://github.com/MobilityData/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing (java app)
+# freeze by commit + self-compile for now (until https://github.com/MobilityData/gtfs-realtime-validator/issues/105 is handled)
+RUN git clone https://github.com/MobilityData/gtfs-realtime-validator.git
+RUN git -C gtfs-realtime-validator checkout f9472e33e3c4719311b354ef7bc747035d67b1a8
 WORKDIR /gtfs-realtime-validator/gtfs-realtime-validator-lib
 RUN apt-get -y install maven
 RUN mvn package
