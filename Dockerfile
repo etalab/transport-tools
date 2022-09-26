@@ -81,7 +81,7 @@ RUN /usr/local/bin/transport-validator --help
 RUN /usr/local/bin/gtfs2netexfr --help
 
 # the --help returns a non-zero exit code ; we grep on a well-known text as a quick test
-RUN java -jar /usr/local/bin/gtfs-validator-v3.1.1_cli.jar --help | grep "Location of the input GTFS ZIP"
+RUN java -jar /usr/local/bin/gtfs-validator-3.1.1-cli.jar --help | grep "Location of the input GTFS ZIP"
 # there is no --version or --help here currently
 RUN java -jar /usr/local/bin/gtfs-realtime-validator-lib-1.0.0-SNAPSHOT.jar 2>&1 | grep "For batch mode you must provide a path and file name to GTFS data"
 # freeze the JDK too (installed via default-jre, so no explicit version)
