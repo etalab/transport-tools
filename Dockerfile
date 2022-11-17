@@ -14,7 +14,7 @@ RUN strip ./target/release/gtfs-geojson
 WORKDIR /
 # this repo has no tagged releases ; we pin the version based on latest verified commit instead
 RUN git clone https://github.com/etalab/transport-validator.git
-RUN git -C transport-validator checkout 4f985748eea742bb077327f8463f9bbc5e13cb1c
+RUN git -C transport-validator checkout b98d0c0d5f19a50a4c9750fd5817d8e2a857105b
 WORKDIR /transport-validator
 RUN cargo build --release
 RUN strip ./target/release/main
