@@ -32,14 +32,21 @@ RUN strip ./target/release/main
 # - https://hub.docker.com/r/kisiodigital/proj-ci
 # - https://github.com/CanalTP/ci-images
 #
-FROM navitia/transit_model:v0.55.0 as transit_model
-WORKDIR /usr/local/bin/
-RUN strip ./gtfs2netexfr
+FROM kisiodigital/rust-ci:latest-proj8.1.0 as builder_proj
+WORKDIR /
+# we pin the version to avoid unexpected changes due to rebuild on our side
+RUN git clone --depth=1 --branch=v0.55.0 --single-branch https://github.com/CanalTP/transit_model
+WORKDIR /transit_model
+# NOTE: when using the kisio rust-ci as a base image, CARGO_TARGET_DIR is set to something like `/tmp/cargo-release`.
+# To avoid breaking the build in case of variable change upstream, we instead force the build to be local, which
+# makes the COPY step in the next stage more reliable too. Useful debugging tips including `RUN env`, and adding `--verbose`
+RUN CARGO_TARGET_DIR=./target cargo build --manifest-path=gtfs2netexfr/Cargo.toml --release
+RUN strip ./target/release/gtfs2netexfr
 
 FROM ubuntu:focal
 COPY --from=builder /gtfs-to-geojson/target/release/gtfs-geojson /usr/local/bin/gtfs-geojson
 COPY --from=builder /transport-validator/target/release/main /usr/local/bin/transport-validator
-COPY --from=transit_model /usr/local/bin/gtfs2netexfr /usr/local/bin/gtfs2netexfr
+COPY --from=builder_proj /transit_model/target/release/gtfs2netexfr /usr/local/bin/gtfs2netexfr
 
 RUN apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libssl-dev default-jre curl git
@@ -63,10 +70,10 @@ WORKDIR /
 # for gtfs2netexfr
 RUN apt-get -y install libtiff5 libcurl3-nss
 # hackish ; TODO: check out https://github.com/CanalTP/ci-images instead
-COPY --from=transit_model /usr/lib/libproj.* /usr/lib
+COPY --from=builder_proj /usr/lib/libproj.* /usr/lib
 # home of proj.db
 RUN mkdir /usr/share/proj/
-COPY --from=transit_model /usr/share/proj/ /usr/share/proj/
+COPY --from=builder_proj /usr/share/proj/ /usr/share/proj/
 
 # run each binary (as part of CI) to make sure they do not lack a dynamic dependency
 RUN /usr/local/bin/gtfs-geojson --help
