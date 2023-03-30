@@ -2,13 +2,13 @@ FROM ubuntu:focal
 
 # https://github.com/rust-transit/gtfs-to-geojson.git (rust app)
 FROM rust:latest as builder
-WORKDIR /
+# WORKDIR /
 # this repo has no tagged releases ; we pin the version based on latest verified commit instead
-RUN git clone https://github.com/rust-transit/gtfs-to-geojson.git
-RUN git -C gtfs-to-geojson checkout 005a098062d7dc3b12704454e2c037fa0ee11172
-WORKDIR /gtfs-to-geojson
-RUN cargo build --release
-RUN strip ./target/release/gtfs-geojson
+# RUN git clone https://github.com/rust-transit/gtfs-to-geojson.git
+# RUN git -C gtfs-to-geojson checkout 005a098062d7dc3b12704454e2c037fa0ee11172
+# WORKDIR /gtfs-to-geojson
+# RUN cargo build --release
+# RUN strip ./target/release/gtfs-geojson
 
 # https://github.com/etalab/transport-validator.git (rust app)
 WORKDIR /
