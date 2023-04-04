@@ -6,7 +6,7 @@ RUN rustc --version
 WORKDIR /
 # this repo has no tagged releases ; we pin the version based on latest verified commit instead
 RUN git clone https://github.com/rust-transit/gtfs-to-geojson.git
-RUN git -C gtfs-to-geojson checkout 005a098062d7dc3b12704454e2c037fa0ee11172
+RUN git -C gtfs-to-geojson checkout 9ca9a25b895ba1b2fdf4d04e92895afec52d0608
 WORKDIR /gtfs-to-geojson
 RUN cargo build --release
 RUN strip ./target/release/gtfs-geojson
