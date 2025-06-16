@@ -1,19 +1,18 @@
 ### What is this?
 
 This repository contains a Docker setup to consolidate various converters and validators that we use or will use soon on [transport.data.gouv.fr](https://transport.data.gouv.fr):
-* https://github.com/rust-transit/gtfs-to-geojson.git
-* https://github.com/etalab/transport-validator.git
-* https://github.com/CanalTP/transit_model/tree/master/gtfs2netexfr
+* https://github.com/rust-transit/gtfs-to-geojson
+* https://github.com/etalab/transport-validator
 * https://github.com/MobilityData/gtfs-validator
-* https://github.com/CUTR-at-USF/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md#batch-processing
+* https://github.com/MobilityData/gtfs-realtime-validator/blob/master/gtfs-realtime-validator-lib/README.md
 
-This is an internal build, but we are still publishing it as open-source in case it helps other (without support at this point).
+This is an internal build, but we are still publishing it as open-source in case it helps others (without support at this point).
 
 ### Release process
 
 To create a new release as a Docker image, just create a GitHub release: it is important that you create a tag named `v1.0.x` or similar, and that the release has the same name + changelog.
 
-On release creation (see https://github.com/etalab/transport-tools/blob/master/.github/workflows/docker.yml), a build will start, and should normally result into the publication of a GitHub-hosted Docker image named just like the release.
+On release creation (see https://github.com/etalab/transport-tools/blob/master/.github/workflows/docker.yml), a build will start, and should normally result in the publication of a GitHub-hosted Docker image named just like the release.
 
 You can find the release here: https://github.com/etalab/transport-tools/pkgs/container/transport-tools
 
@@ -30,7 +29,7 @@ One major caveat: the workflow must exist at the moment the tag is created (http
 
 Option 1: via a local file stored on disk
 
-* Download the GTFS file on disk in current folder (manually or with a `curl` command), e.g. "some-file.zip"
+* Download the GTFS file on disk in the current folder (manually or with a `curl` command), e.g. "some-file.zip"
 * Run the following command (keep `/data/` in front of your filename):
 
 ```
@@ -41,7 +40,7 @@ If you are on Windows, replace `$(pwd)` by `%cd%`.
 
 You can change the output format to `Json` or `PrettyJson` if preferred.
 
-Option 2: via an URL
+Option 2: via a URL
 
 * Run the following command:
 
