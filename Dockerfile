@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:noble
 
 # https://github.com/rust-transit/gtfs-to-geojson.git (rust app)
 FROM rust:latest as builder
